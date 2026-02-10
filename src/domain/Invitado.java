@@ -27,6 +27,8 @@ public abstract class Invitado {
         estaEnFiesta = true;
     }
 
+    //Getters and setters necesarios
+
     private void setHambre(int hambre)throws DatosException  {
         if (hambre < 0 || hambre > 100){
             throw new DatosException("El hambre introducido no es válido");
@@ -84,6 +86,8 @@ public abstract class Invitado {
         }
         this.hambre += modificacion;
     }
+
+    //Metodos abstractos para reaccionar y comprobar si se va de la fiesta
 
     public abstract void reaccionar(Evento evento);
 
