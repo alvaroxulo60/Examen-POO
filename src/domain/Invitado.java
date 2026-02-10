@@ -1,7 +1,10 @@
 package domain;
 
+import exceptions.DatosException;
+
 public abstract class Invitado {
     public static final int MODIFICACION_HAMBRE_POR_PIÑATA = 10;
+    public static final int MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER = 10;
     public static final int MODIFICACION_DIVERSION_POR_PIÑATA = 20;
     public static final int MODIFICACION_POR_REGALOS = 10;
     public static final int MODIFICACION_POR_CHARLITA_COLOQUIAL = 20;
@@ -11,13 +14,16 @@ public abstract class Invitado {
     private int hambre;
     private int aburrimiento;
 
-    public Invitado(String nombre, int hambre, int aburrimiento)  {
+    public Invitado(String nombre, int hambre, int aburrimiento) throws DatosException {
         this.nombre = nombre;
         setHambre(hambre);
         setAburrimiento(hambre);
     }
 
-    private void setHambre(int hambre)  {
+    private void setHambre(int hambre)throws DatosException  {
+        if (hambre < 0 || hambre > 100){
+            throw new DatosException("El hambre introducido no es válido");
+        }
         this.hambre = hambre;
     }
 
@@ -33,7 +39,10 @@ public abstract class Invitado {
         return aburrimiento;
     }
 
-    private void setAburrimiento(int aburrimiento)  {
+    private void setAburrimiento(int aburrimiento) throws DatosException {
+        if (aburrimiento < 0 || aburrimiento > 100){
+            throw new DatosException("El aburrimiento introducido no es válido");
+        }
         this.aburrimiento = aburrimiento;
     }
 

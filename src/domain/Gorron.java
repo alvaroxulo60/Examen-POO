@@ -1,5 +1,7 @@
 package domain;
 
+import exceptions.DatosException;
+
 public class Gorron extends Invitado{
     public static final int MODIFICACION_POR_TARTA = 30;
     public static final int MODIFICACION_POR_MUSICA = 30;
@@ -7,7 +9,7 @@ public class Gorron extends Invitado{
     public static final int MODIFICACION_POR_ROBAR_COMIDA = 5;
     public static final int MODIFICACION_POR_CHARLITA_COLOQUIAL = 10;
 
-    public Gorron(String nombre, int hambre, int aburrimiento)   {
+    public Gorron(String nombre, int hambre, int aburrimiento)throws DatosException {
         super(nombre, hambre, aburrimiento);
     }
 
@@ -22,19 +24,23 @@ public class Gorron extends Invitado{
             }
             case MUSICA_BAJA -> {
                 this.modificarAburrimiento(MODIFICACION_POR_MUSICA);
+                this.modificarHambre(MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER);
             }
             case CHARLITA_COLOQUIAL -> {
                 this.modificarAburrimiento(MODIFICACION_POR_CHARLITA_COLOQUIAL);
+                this.modificarHambre(MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER);
             }
             case BAILE -> {
                 this.modificarAburrimiento(-MODIFICACION_POR_BAILE);
                 robarComida(MODIFICACION_POR_ROBAR_COMIDA*2);
             }
             case PIÑATA -> {
+                this.modificarAburrimiento(MODIFICACION_DIVERSION_POR_PIÑATA);
                 this.modificarHambre(-MODIFICACION_HAMBRE_POR_PIÑATA*2);
             }
             case APERTURA_REGALOS -> {
                 this.modificarAburrimiento(-MODIFICACION_POR_REGALOS);
+                this.modificarHambre(MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER);
             }
         }
     }
