@@ -17,17 +17,20 @@ public class Familia extends Invitado implements Regalador {
         super(nombre, hambre, aburrimiento);
         setRegalo();
     }
+
+
     @Override
     public void setRegalo() {
-        int random = MiEntradaSalida.generaAleatorioEntre(1,2,true);
-        switch (random){
-            case 1 ->{
-                regalo = Regalos.DINERO;
-            }
-            case 2 ->{
-                regalo = Regalos.ROPA;
-            }
-        }
+        int random;
+        do {
+            random = MiEntradaSalida.generaAleatorioEntre(0,Regalos.values().length,false);
+        }while (Regalos.values()[random].equals(Regalos.JUGUETES));
+        regalo = Regalos.values()[random];
+    }
+
+    @Override
+    public Regalos getRegalo() {
+        return regalo;
     }
 
     @Override
@@ -61,6 +64,13 @@ public class Familia extends Invitado implements Regalador {
                this.modificarHambre(MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER);
            }
        }
+    }
+
+    @Override
+    public void irseDeLaFiesta() {
+        if (getAburrimiento() ==  100 || getHambre() == 100){
+            setEstaEnFiesta(false);
+        }
     }
 
 

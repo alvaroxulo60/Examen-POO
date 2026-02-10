@@ -8,9 +8,10 @@ public class Gorron extends Invitado{
     public static final int MODIFICACION_POR_BAILE = 5;
     public static final int MODIFICACION_POR_ROBAR_COMIDA = 5;
     public static final int MODIFICACION_POR_CHARLITA_COLOQUIAL = 10;
+    public static final int HAMBRE = 90;
 
-    public Gorron(String nombre, int hambre, int aburrimiento)throws DatosException {
-        super(nombre, hambre, aburrimiento);
+    public Gorron(String nombre, int aburrimiento)throws DatosException {
+        super(nombre, HAMBRE, aburrimiento);
     }
 
     @Override
@@ -47,5 +48,12 @@ public class Gorron extends Invitado{
 
     public void robarComida(int modificacion){
         this.modificarHambre(-modificacion);
+    }
+
+    @Override
+    public void irseDeLaFiesta() {
+        if (getAburrimiento() ==  100 || getHambre() == 0){
+            setEstaEnFiesta(false);
+        }
     }
 }

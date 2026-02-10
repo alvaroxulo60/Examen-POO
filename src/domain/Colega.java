@@ -13,7 +13,10 @@ public class Colega extends Invitado implements Regalador{
 
     public Colega(String nombre, int hambre, int aburrimiento)throws DatosException {
         super(nombre, hambre, aburrimiento);
+        setRegalo();
     }
+
+
 
     @Override
     public void reaccionar(Evento evento) {
@@ -50,14 +53,22 @@ public class Colega extends Invitado implements Regalador{
 
     @Override
     public void setRegalo() {
-        int random = MiEntradaSalida.generaAleatorioEntre(1,2,true);
-        switch (random){
-            case 1 ->{
-                regalo = Regalos.JUGUETES;
-            }
-            case 2 ->{
-                regalo = Regalos.ROPA;
-            }
+        int random;
+        do {
+            random = MiEntradaSalida.generaAleatorioEntre(0,Regalos.values().length,false);
+        }while (Regalos.values()[random].equals(Regalos.DINERO));
+        regalo = Regalos.values()[random];
+    }
+
+    @Override
+    public Regalos getRegalo() {
+        return regalo;
+    }
+
+    @Override
+    public void irseDeLaFiesta() {
+        if (getAburrimiento() ==  100 || getHambre() == 100){
+            setEstaEnFiesta(false);
         }
     }
 }
