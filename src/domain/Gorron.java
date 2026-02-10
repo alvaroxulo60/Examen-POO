@@ -1,0 +1,45 @@
+package domain;
+
+public class Gorron extends Invitado{
+    public static final int MODIFICACION_POR_TARTA = 30;
+    public static final int MODIFICACION_POR_MUSICA = 30;
+    public static final int MODIFICACION_POR_BAILE = 5;
+    public static final int MODIFICACION_POR_ROBAR_COMIDA = 5;
+    public static final int MODIFICACION_POR_CHARLITA_COLOQUIAL = 10;
+
+    public Gorron(String nombre, int hambre, int aburrimiento)   {
+        super(nombre, hambre, aburrimiento);
+    }
+
+    @Override
+    public void reaccionar(Evento evento) {
+        switch (evento){
+            case CORTE_TARTA -> {
+                this.modificarHambre(-MODIFICACION_POR_TARTA);
+            }
+            case MUSICA_ALTA -> {
+                robarComida(MODIFICACION_POR_ROBAR_COMIDA*2);
+            }
+            case MUSICA_BAJA -> {
+                this.modificarAburrimiento(MODIFICACION_POR_MUSICA);
+            }
+            case CHARLITA_COLOQUIAL -> {
+                this.modificarAburrimiento(MODIFICACION_POR_CHARLITA_COLOQUIAL);
+            }
+            case BAILE -> {
+                this.modificarAburrimiento(-MODIFICACION_POR_BAILE);
+                robarComida(MODIFICACION_POR_ROBAR_COMIDA*2);
+            }
+            case PIÑATA -> {
+                this.modificarHambre(-MODIFICACION_HAMBRE_POR_PIÑATA*2);
+            }
+            case APERTURA_REGALOS -> {
+                this.modificarAburrimiento(-MODIFICACION_POR_REGALOS);
+            }
+        }
+    }
+
+    public void robarComida(int modificacion){
+        this.modificarHambre(-modificacion);
+    }
+}
