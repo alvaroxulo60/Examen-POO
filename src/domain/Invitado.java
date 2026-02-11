@@ -23,14 +23,14 @@ public abstract class Invitado {
     public Invitado(String nombre, int hambre, int aburrimiento) throws DatosException {
         this.nombre = nombre;
         setHambre(hambre);
-        setAburrimiento(hambre);
+        setAburrimiento(aburrimiento);
         estaEnFiesta = true;
     }
 
     //Getters and setters necesarios
 
-    private void setHambre(int hambre)throws DatosException  {
-        if (hambre < 0 || hambre > 100){
+    private void setHambre(int hambre) throws DatosException {
+        if (hambre < 0 || hambre > 100) {
             throw new DatosException("El hambre introducido no es válido");
         }
         this.hambre = hambre;
@@ -57,7 +57,7 @@ public abstract class Invitado {
     }
 
     private void setAburrimiento(int aburrimiento) throws DatosException {
-        if (aburrimiento < 0 || aburrimiento > 100){
+        if (aburrimiento < 0 || aburrimiento > 100) {
             throw new DatosException("El aburrimiento introducido no es válido");
         }
         this.aburrimiento = aburrimiento;
@@ -65,23 +65,24 @@ public abstract class Invitado {
 
     /**
      * Dos metodos para modificar tanto el hambre como el aburrimiento de cada invitado
+     *
      * @param modificacion la cantidad a modificar
      */
-    public void modificarAburrimiento(int modificacion){
-        if (aburrimiento+modificacion < 0 || aburrimiento == 0){
+    public void modificarAburrimiento(int modificacion) {
+        if (aburrimiento + modificacion < 0 || aburrimiento == 0) {
             this.aburrimiento = 0;
         }
-        if (aburrimiento + modificacion > 100 || aburrimiento == 100){
+        if (aburrimiento + modificacion > 100 || aburrimiento == 100) {
             this.aburrimiento = 100;
         }
         this.aburrimiento += modificacion;
     }
 
-    public void modificarHambre(int modificacion){
-        if (hambre+modificacion < 0 || hambre == 0){
+    public void modificarHambre(int modificacion) {
+        if (hambre + modificacion < 0 || hambre == 0) {
             this.hambre = 0;
         }
-        if (hambre + modificacion > 100 || hambre == 100){
+        if (hambre + modificacion > 100 || hambre == 100) {
             this.hambre = 100;
         }
         this.hambre += modificacion;
