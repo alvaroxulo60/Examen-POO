@@ -34,7 +34,7 @@ public class Gorron extends Invitado{
             }
             case CHARLITA_COLOQUIAL -> {
                 this.modificarAburrimiento(MODIFICACION_POR_CHARLITA_COLOQUIAL);//Sube aburrimiento
-                this.modificarHambre(MODIFICACION_HAMBRE_POR_RONDA_SIN_COMER);//sube hambre
+                robarComida(MODIFICACION_POR_ROBAR_COMIDA);
             }
             case BAILE -> {
                 this.modificarAburrimiento(-MODIFICACION_POR_BAILE);//Baja aburrimiento
