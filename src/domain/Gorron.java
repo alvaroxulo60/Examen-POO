@@ -64,7 +64,7 @@ public class Gorron extends Invitado{
      */
     @Override
     public void irseDeLaFiesta() {
-        if (getAburrimiento() ==  100 || getHambre() == 0){
+        if (getHambre() == 0){
             setEstaEnFiesta(false);
         }
     }
